@@ -58,7 +58,6 @@ public class Main2Activity extends AppCompatActivity {
                 String value = dataSnapshot.getValue(String.class);
 
                 Toast.makeText(getApplicationContext(), value, Toast.LENGTH_LONG).show();
-
             }
 
             @Override
