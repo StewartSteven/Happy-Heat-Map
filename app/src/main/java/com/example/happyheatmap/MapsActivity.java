@@ -50,6 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        dbRead();
     }
 
 
@@ -73,7 +74,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void addHeatMap() {
-        dbRead();
         // Get the data: latitude/longitude positions of police stations.
 
         JSONObject values = new JSONObject(dataMap);
@@ -109,8 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 dataMap = (HashMap<String, Object>) dataSnapshot.getValue();
-                String value = (String)dataMap.get("Happy");
-
+                addHeatMap();
                 Toast.makeText(getApplicationContext(), value, Toast.LENGTH_LONG).show();
 
             }
