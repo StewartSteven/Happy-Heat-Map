@@ -14,6 +14,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 
 public class Main2Activity extends AppCompatActivity {
     Button buttontest;
@@ -49,13 +51,14 @@ public class Main2Activity extends AppCompatActivity {
 
     public void dbRead(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Bad");
+        DatabaseReference myRef = database.getReference();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
+                HashMap<String, Object> dataMap = (HashMap<String, Object>) dataSnapshot.getValue();
+                String value = (String)dataMap.get("Happy");
 
                 Toast.makeText(getApplicationContext(), value, Toast.LENGTH_LONG).show();
 
